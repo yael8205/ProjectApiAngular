@@ -1,0 +1,34 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using lotteryApi.Enums;
+
+namespace lotteryApi.Models
+{
+    public class GiftModel
+    {
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+
+        public string? Description { get; set; }
+        [Required]
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public CategoryModel Category { get; set; }
+
+        [Required]
+        public int PrizeQuantity { get; set; } = 1;
+        [Required]
+        public CardPriceEnum CardPrice { get; set; }
+
+        public string? PictureUrl { get; set; }
+        [Required]
+        public int DonorId { get; set; }
+
+        [ForeignKey("DonorId")]
+        public DonorModel Donor { get; set; }
+        ////////??????????????
+        ///////סוג חבילה
+        public ICollection<GiftInOrderModel> Cards  { get; set; } = new List<GiftInOrderModel>();
+    }
+}
