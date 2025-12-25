@@ -36,5 +36,26 @@ namespace lotteryApi.Controllers
              await _donorService.CreateDonorsAsync(donor);
             return Ok(donor);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DonorDto>> UpdateDonorsAsync(int id, [FromBody] UpdateDonorDto donor)
+        {
+            var updatedDonor = await _donorService.UpdateDonorsAsync(id, donor);
+            if (updatedDonor == null)
+            {
+                return NotFound(new { message = $"donor with ID {id} not found 😒" });
+            }
+            return Ok(updatedDonor);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteDonorAsync(int id)
+        {
+            var isDeleted = await _donorService.DeleteDonorAsync(id);
+            if (!isDeleted)
+            {
+                return NotFound(new { message = $"donor with ID {id} not found 😒" });
+            }
+            return Ok(new { message = $"donor with ID {id} deleted successfully ✅" });
+        }
+       
     }
 }

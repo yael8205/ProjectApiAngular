@@ -22,13 +22,12 @@ namespace lotteryApi.Data
 
         public DbSet<ShoppingCartModel> ShoppingCarts { get; set; }
 
-        public DbSet<WinnerModel> Winners { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<OrderModel>()
-                .HasMany(o => o.Packages)
-                .WithMany();
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<OrderModel>()
+        //        .HasMany(o => o.Packages)
+        //        .WithMany();
+        //}
     }
 }

@@ -39,5 +39,19 @@ namespace lotteryApi.Repositories
             await _lotteryContext.SaveChangesAsync();
             return existing;
         }
+
+
+        public async Task<bool> DeleteDonorAsync(int id)
+        {
+            var existing = await _lotteryContext.Donors.FindAsync(id);
+            if (existing != null)
+            {
+                _lotteryContext.Donors.Remove(existing);
+                await _lotteryContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }
+
